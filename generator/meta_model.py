@@ -52,10 +52,37 @@ def get_built_in_question_types():
 
     return built_in_objects
 
+def question_object_processor(question):
+
+    for parameter in question.type.parameters:
+        if parameter.required == True and parameter not in [param.name for param in question.parameters]:
+            raise TextXSemanticError('A required parameter {} is missing from a {}.'.format(parameter, question.type))
+
+def parameter_value_object_processor(parameter_value):
+
+    parameter_type = parameter_value.name.parameter_type
+
+    parameter_val = parameter_value.value
+
+    value_type = type(parameter_val[0]).__name__
+
+    if ((parameter_type == "string[]" and value_type != "str") or
+        (parameter_type == "number[]" and value_type != "float") or 
+        (parameter_type == "boolean[]" and value_type != "bool") or
+        (parameter_type == "string" and (value_type != "str" or len(parameter_val) > 1)) or 
+        (parameter_type == "number" and (value_type != "float" or len(parameter_val) > 1)) or
+        (parameter_type == "boolean" and (value_type != "bool" or len(parameter_val) > 1))):
+        raise TextXSemanticError('Parameter {} should be a {}.'.format(parameter_value.name.name, parameter_type))
+
 def get_metamodel():
 
     current_path = os.path.dirname(__file__)
     grammar_path = os.path.relpath('../grammar/grammar.tx', current_path)
+
+    object_processors = {
+        'Question': question_object_processor,
+        'ParameterValue': parameter_value_object_processor
+    }
 
     metamodel = metamodel_from_file(grammar_path, classes=[Parameter, QuestionType], builtins=get_built_in_question_types())
 
@@ -64,5 +91,7 @@ def get_metamodel():
         "ParameterValue.name": scoping_providers.RelativeName(
             "parent.type.parameters"),
     })
+
+    metamodel.register_obj_processors(object_processors)
 
     return metamodel
