@@ -15,3 +15,24 @@ Parameter:
 ParameterType:
     ('string' | 'number' | 'boolean')('[]')?
 ;
+
+Question:
+    required?='@Required'
+    '@' type=[QuestionType]
+    'question' name=ID '{'
+        'title' ':' title=STRING
+        parameters*=ParameterValue
+    '}'
+;
+
+ParameterValue:
+    name=[Parameter] ':' value+=Value[',']
+;
+
+Value:
+    STRING | FLOAT | BOOL
+;
+
+Comment:
+    /\/\*(.|\n)*?\*\// | /\/\/.*?$/
+;
