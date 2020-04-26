@@ -28,9 +28,12 @@ def get_built_in_question_types():
     multiline_parameter = Parameter(None, 'multiline', True, 'boolean')
     text_question = QuestionType(None, 'TextQuestion', 'description', [multiline_parameter])
 
-    options_parameter = Parameter(None, 'options', True, 'string[]')
+    choices_parameter = Parameter(None, 'choices', True, 'string[]')
     multiple_parameter = Parameter(None, 'multiple', True, 'boolean')
-    choice_question = QuestionType(None, 'ChoiceQuestion', 'description', [options_parameter, multiple_parameter])
+    choice_question = QuestionType(None, 'ChoiceQuestion', 'description', [choices_parameter, multiple_parameter])
+
+    options_parameter = Parameter(None, 'options', True, 'string[]')
+    dropdown_question = QuestionType(None, 'DropDownQuestion', 'description', [options_parameter])
 
     min_parameter = Parameter(None, 'min', True, 'number')
     max_parameter = Parameter(None, 'max', True, 'number')
@@ -41,8 +44,11 @@ def get_built_in_question_types():
     built_in_objects =  {
         'multiline': multiline_parameter,
         'TextQuestion': text_question,
+        'choices': choices_parameter,
         'multiple': multiple_parameter,
         'ChoiceQuestion': choice_question,
+        'options': options_parameter,
+        'DropDownQuestion': dropdown_question,
         'min': min_parameter,
         'max': max_parameter,
         'min_description': min_description_parameter,

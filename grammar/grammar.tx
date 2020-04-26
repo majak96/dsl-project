@@ -2,11 +2,18 @@ Survey:
     //user defined question types
     question_types*=QuestionType
 
-    //survey information
-    survey_info=SurveyInformation
+    //survey
+    survey=SurveyContent
+;
 
-    //sections with questions
-    sections+=Section
+SurveyContent:
+    'survey' name=ID '{'
+        //survey information
+        survey_info=SurveyInformation
+
+        //sections with questions
+        sections+=Section
+    '}'
 ;
 
 SurveyInformation:
@@ -20,7 +27,7 @@ Section:
         ('title' ':' title=STRING)?
         ('description' ':' description=STRING)?
     
-        question+=Question
+        questions+=Question
     '}'
 ;
 
