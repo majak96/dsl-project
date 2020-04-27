@@ -1,0 +1,72 @@
+survey SoftwareEvaluation {
+
+    title : "Software evaluation"
+    description: "Description of this awesome survey"
+
+    //general information section
+    section {
+        title: "General information"
+
+        @Required
+        @TextQuestion
+        question Question1 {
+            title: "Insert your email address"
+            multiline: false
+        }    
+
+        @DropDownQuestion
+        question Question2 {
+            title: "How did you find out about this software?"
+            options: ["From a friend", "From a family member", "From a website", "Other"]
+        }
+    }
+
+    /*software evaluation section*/
+    section {
+        title: "Software evaluation"
+
+        @ChoiceQuestion
+        question Question3 {
+            title: "How satisfied are you with the reliability of this software?"
+            choices: ["Very satisfied", "Somewhat satisfied", "Not so satisfied", "Not satisfied at all"]
+            multiple: false
+        }
+
+        @ChoiceQuestion
+        question Question4 {
+            title: "How satisfied are you with the security of this software?"
+            choices: ["Very satisfied", "Somewhat satisfied", "Not so satisfied", "Not satisfied at all"]
+            multiple: false
+        }   
+
+        @ChoiceQuestion
+        question Question5 {
+            title: "How satisfied are you with the look and feel of this software?"
+            choices: ["Very satisfied", "Somewhat satisfied", "Not so satisfied", "Not satisfied at all"]
+            multiple: false
+        }   
+    }
+
+    /*
+        conclusion 
+        section
+    */
+    section {
+        title: "Conclusion"
+
+        @LinearScaleQuestion
+        question Question6 {
+            title: "How likely is it that you would recommend this software to a friend or a family member?"
+            min: 0
+            max: 5
+            min_description: "not at all likely"
+            max_description: "extremely likely"
+        } 
+
+        @TextQuestion
+        question Question7 {
+            title: "Do you have any thoughts on how to improve this software?"
+            multiline: true
+        }   
+    }
+}

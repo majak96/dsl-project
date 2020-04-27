@@ -1,0 +1,21 @@
+<div class="card card-question mt-4">
+    <div class="card-body">
+        <h5 class="card-title mb-2">{{question.title}}</h5>
+        <div class="check-box-group">
+            <div class="row">
+                {% for index in range(question.parameters['max']-question.parameters['min']+1)%}
+                {% if index==0 %}
+                {{question.parameters['min_description']}} &nbsp; &nbsp;
+                {%endif%}
+                <div class="col custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="{{question.name}}-{{index}}" name="{{question.name}}">
+                    <label class="custom-control-label" for="{{question.name}}-{{index}}">{{question.parameters['min']+index}}</label>
+                </div>
+                {% if (((question.parameters['min'])+index)==question.parameters['max']) %}
+                &nbsp;{{question.parameters['max_description']}} &nbsp;
+                {%endif%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
