@@ -33,6 +33,24 @@ def main():
             section_temp.questions.append(question_temp)
         
         survey_object.sections.append(section_temp)
+
+    # create output folder
+    output_folder = join(this_folder, 'generator_output')
+    if not exists(output_folder):
+        mkdir(output_folder)
+
+    # initialize template engine
+    jinja_env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader(join(this_folder, 'templates')),
+        trim_blocks=True,
+        lstrip_blocks=True)
+
+    template = jinja_env.get_template('survey.j2')
+
+    f = open(join(output_folder, "%s.html" % model.survey.name), 'w')
+    f.write(template.render(survey=survey_object))
+
+    copy(join(this_folder, 'templates/styles.css'), output_folder)
    
    
 if __name__ == "__main__":

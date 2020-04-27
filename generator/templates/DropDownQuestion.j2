@@ -1,0 +1,10 @@
+<div class="card card-question mt-4">
+    <div class="card-body">
+        <h5 class="card-title mb-2">{{question.title}}</h5>
+        <select class="form-control">
+            {% for option in question.parameters['options'] %}
+            <option>{{option}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
