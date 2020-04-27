@@ -1,0 +1,44 @@
+.main-body {
+    background-color: rgba(17, 207, 197, 0.1);
+}
+
+.card-header{
+    background-color: rgb(17, 207, 197);
+}
+
+.card-question {
+    padding: 1rem;
+}
+
+input, textarea, fieldset, select, .check-box-group {
+    margin-top: 2rem;
+}
+
+.form-field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgb(161, 153, 153);
+    outline: 0;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+
+.questionnaire {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color:  rgb(17, 207, 197);
+    border-color:  rgb(17, 207, 197);
+}
+
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+    background-color:  rgb(17, 207, 197);
+    border-color:  rgb(17, 207, 197);
+}
+

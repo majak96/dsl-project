@@ -1,0 +1,53 @@
+<html>
+    <head>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    
+    <body class="container main-body px-5">
+        <div class="questionnaire">
+            <div class="card mt-5">
+                <div class="card-header"></div>
+                <div class="card-body my-2 mx-2">
+                    <h3 class="card-title">{{survey.title}}</h3>
+                    <h6 class="card-text text-muted" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        {{survey.description}}
+                    </h6>
+                </div>
+            </div>
+                <form>
+                    {% for section in survey.sections %}
+                    <section>
+                        <div class="card mt-5">
+                            <div class="card-header">Section {{loop.index}} of {{survey.sections|length}}</div>
+                            <div class="card-body my-2 mx-2">
+                                <h4 class="card-title">{{section.title}}</h4>
+                                {% if section.description %}
+                                <h6 class="card-text text-muted" style="margin-top: 1rem; margin-bottom: 0.5rem;">
+                                {{section.description}}
+                                </h6>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% for question in section.questions %}
+                        {% filter indent(first= True, width=24) %}
+                            {% include question.qtype+".j2" ignore missing %}
+                            
+                        {% endfilter %}
+                    {% endfor %}
+                    
+                    </section>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
