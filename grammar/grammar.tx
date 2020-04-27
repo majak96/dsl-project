@@ -46,7 +46,7 @@ Parameter:
 ;
 
 ParameterType:
-    ('string' | 'number' | 'boolean')('[]')?
+    ('string' | 'integer' | 'float' | 'boolean')('[]')?
 ;
 
 Question:
@@ -59,11 +59,20 @@ Question:
 ;
 
 ParameterValue:
-    name=[Parameter] ':' value+=Value[',']
+    parameter=[Parameter] ':' value=Value
+    
 ;
 
 Value:
-    STRING | FLOAT | BOOL
+    PrimitiveValue | ArrayValue
+;
+
+PrimitiveValue:
+    value=STRING | value=STRICTFLOAT | value=INT | value=BOOL
+;
+
+ArrayValue:
+    '[' value+=STRING[','] ']' | '[' value+=STRICTFLOAT[','] ']' | '[' value+=INT[','] ']' | '[' value+=BOOL[','] ']' 
 ;
 
 Comment:

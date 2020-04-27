@@ -35,24 +35,16 @@ def get_built_in_question_types():
     options_parameter = Parameter(None, 'options', True, 'string[]')
     dropdown_question = QuestionType(None, 'DropDownQuestion', 'description', [options_parameter])
 
-    min_parameter = Parameter(None, 'min', True, 'number')
-    max_parameter = Parameter(None, 'max', True, 'number')
+    min_parameter = Parameter(None, 'min', True, 'integer')
+    max_parameter = Parameter(None, 'max', True, 'integer')
     min_description_parameter = Parameter(None, 'min_description', True, 'string')
     max_description_parameter = Parameter(None, 'max_description', True, 'string')
     linear_scale_question = QuestionType(None, 'LinearScaleQuestion', 'description', [min_parameter, max_parameter, min_description_parameter, max_description_parameter])
 
     built_in_objects =  {
-        'multiline': multiline_parameter,
         'TextQuestion': text_question,
-        'choices': choices_parameter,
-        'multiple': multiple_parameter,
         'ChoiceQuestion': choice_question,
-        'options': options_parameter,
         'DropDownQuestion': dropdown_question,
-        'min': min_parameter,
-        'max': max_parameter,
-        'min_description': min_description_parameter,
-        'max_description': max_description_parameter,
         'LinearScaleQuestion': linear_scale_question,
     }
 
@@ -61,24 +53,24 @@ def get_built_in_question_types():
 def question_object_processor(question):
 
     for parameter in question.type.parameters:
-        if parameter.required == True and parameter not in [param.name for param in question.parameters]:
+        if parameter.required == True and parameter not in [param.parameter for param in question.parameters]:
             raise TextXSemanticError('A required parameter {} is missing from a {}.'.format(parameter, question.type))
 
 def parameter_value_object_processor(parameter_value):
 
-    parameter_type = parameter_value.name.parameter_type
+    parameter_type = parameter_value.parameter.parameter_type
 
-    parameter_val = parameter_value.value
+    parameter_val = parameter_value.value.value
 
-    value_type = type(parameter_val[0]).__name__
-
-    if ((parameter_type == "string[]" and value_type != "str") or
-        (parameter_type == "number[]" and value_type != "float") or 
-        (parameter_type == "boolean[]" and value_type != "bool") or
-        (parameter_type == "string" and (value_type != "str" or len(parameter_val) > 1)) or 
-        (parameter_type == "number" and (value_type != "float" or len(parameter_val) > 1)) or
-        (parameter_type == "boolean" and (value_type != "bool" or len(parameter_val) > 1))):
-        raise TextXSemanticError('Parameter {} should be a {}.'.format(parameter_value.name.name, parameter_type))
+    if ((parameter_type == "string[]" and (type(parameter_val).__name__ != "list" or type(parameter_val[0]).__name__ != "str")) or
+        (parameter_type == "integer[]" and (type(parameter_val).__name__ != "list" or type(parameter_val[0]).__name__ != "int")) or 
+        (parameter_type == "float[]" and (type(parameter_val).__name__ != "list" or type(parameter_val[0]).__name__ != "float")) or
+        (parameter_type == "boolean[]" and (type(parameter_val).__name__ != "list" or type(parameter_val[0]).__name__ != "bool")) or
+        (parameter_type == "string" and (type(parameter_val).__name__ != "str")) or 
+        (parameter_type == "integer" and (type(parameter_val).__name__ != "int")) or
+        (parameter_type == "float" and (type(parameter_val).__name__ != "float")) or
+        (parameter_type == "boolean" and (type(parameter_val).__name__ != "bool"))):
+        raise TextXSemanticError('Parameter {} should be a {}.'.format(parameter_value.parameter.name, parameter_type))
 
 def get_metamodel():
 
@@ -94,10 +86,11 @@ def get_metamodel():
 
     metamodel.register_scope_providers({
         "*.*": scoping_providers.PlainName(),
-        "ParameterValue.name": scoping_providers.RelativeName(
+        "ParameterValue.parameter": scoping_providers.RelativeName(
             "parent.type.parameters"),
     })
 
     metamodel.register_obj_processors(object_processors)
 
     return metamodel
+    
