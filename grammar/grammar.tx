@@ -1,0 +1,80 @@
+Survey:
+    //user defined question types
+    question_types*=QuestionType
+
+    //survey
+    survey=SurveyContent
+;
+
+SurveyContent:
+    'survey' name=ID '{'
+        //survey information
+        survey_info=SurveyInformation
+
+        //sections with questions
+        sections+=Section
+    '}'
+;
+
+SurveyInformation:
+    'title' ':' title=STRING
+    ('description' ':' description=STRING)?
+    ('author' ':' author=STRING)?
+;
+
+Section:
+    'section' '{'
+        ('title' ':' title=STRING)?
+        ('description' ':' description=STRING)?
+    
+        questions+=Question
+    '}'
+;
+
+QuestionType:
+    'question_type' name=ID '{'
+        ('description' ':' description=STRING)?
+        'parameters' '{'
+            parameters*=Parameter
+        '}'
+    '}'    
+;
+
+Parameter:
+    required?='@Required'
+    parameter_type=ParameterType name=ID
+;
+
+ParameterType:
+    ('string' | 'integer' | 'float' | 'boolean')('[]')?
+;
+
+Question:
+    required?='@Required'
+    '@' type=[QuestionType]
+    'question' name=ID '{'
+        'title' ':' title=STRING
+        parameters*=ParameterValue
+    '}'
+;
+
+ParameterValue:
+    parameter=[Parameter] ':' value=Value
+    
+;
+
+Value:
+    PrimitiveValue | ArrayValue
+;
+
+PrimitiveValue:
+    value=STRING | value=STRICTFLOAT | value=INT | value=BOOL
+;
+
+ArrayValue:
+    '[' value+=STRING[','] ']' | '[' value+=STRICTFLOAT[','] ']' | '[' value+=INT[','] ']' | '[' value+=BOOL[','] ']' 
+;
+
+Comment:
+    /\/\*(.|\n)*?\*\// | /\/\/.*?$/
+;
