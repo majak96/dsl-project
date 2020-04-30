@@ -36,18 +36,17 @@ input, textarea, fieldset, select, .check-box-group {
     border-color:  rgb(17, 207, 197);
 }
 
-
 .custom-radio .custom-control-input:checked~.custom-control-label::before{
     background-color:  rgb(17, 207, 197);
     border-color:  rgb(17, 207, 197);
 }
 
 .alertBox {
-    position:absolute;
-    right:4%;
-    margin:0px auto;
-	text-align:center;
-    display:none;
+    position: fixed;
+    bottom: 5px;
+    right:2%;
+    width: 50%;
+    display: none;
 }
 
 .submit-btn{

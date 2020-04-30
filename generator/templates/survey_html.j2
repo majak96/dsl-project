@@ -23,7 +23,7 @@
                     </h6>
                 </div>
             </div>
-                <form action="https://en96sm60rk9gv.x.pipedream.net" id="myForm" method="post">
+                <form id="myForm">
                     {% for section in survey.sections %}
                     <section>
                         <div class="card mt-5">
@@ -50,13 +50,33 @@
                 </form>
             </div>
         </div>
-
-        <div class="alert alert-primary alertBox" id="successAlertBox">
-            Successfully submited.
+        <div class="row">
+            <div class="column">
+                <div class="alert alert-primary alertBox alert-dismissable" id="successAlertBox">
+                    <button type="button" class="close alert-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% if survey.success_message %}
+                    <p>{{survey.success_message}}</p>
+                    {% else %}
+                    <p>Successfully submited!</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-
-        <div class="alert alert-danger alertBox" id="errorAlertBox">
-            Error 
+        <div class="row">
+            <div class="column">
+                <div class="alert alert-danger alertBox alert-dismissable" id="errorAlertBox">
+                    <button type="button" class="close alert-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% if survey.error_message %}
+                    <p>{{survey.error_message}}</p>
+                    {% else %}
+                    <p>An error occured! Please try again.</p> 
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </body>
 </html>

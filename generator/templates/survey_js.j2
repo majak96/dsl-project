@@ -1,27 +1,27 @@
 $(document).ready(function(){
     $('#submitBtn').click(function () {
-		$('#myForm').click(function(){
-			$("#myForm").unbind();
-			$.ajax({
-			    url: $('#myForm').attr('action'),
-			    type: 'POST',
-			    data : $('#myForm').serialize(),
-			    success: function(){
-			    	$('#myForm')[0].reset();
-					$("#successAlertBox").fadeIn();
-					closeSuccessAlertBox();
-				},
-				error: function (message) {
-					$("#errorAlertBox").fadeIn();
-					closeErrorAlertBox();
-				}
-			});
-			return false;
+		$.ajax({
+			url: '{{survey.submit_url}}',
+			type: 'POST',
+			data: $('#myForm').serialize(),
+			success: function(){
+				$('#myForm')[0].reset();
+
+				$("#successAlertBox").fadeIn();
+				closeSuccessAlertBox();
+			},
+			error: function (message) {
+				$("#errorAlertBox").fadeIn();
+				closeErrorAlertBox();
+			}
 		});
-		
+		return false;		
+	})
+
+	$('.alert-close').click(function(){
+		$(this).parent().hide();
 	})
 });
-
 
 function closeSuccessAlertBox(){
 	window.setTimeout(function () {

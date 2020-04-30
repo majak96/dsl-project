@@ -19,7 +19,10 @@ def main():
     survey_object = Survey(survey_name,
                            survey_information.title,
                            survey_information.description,
-                           survey_information.author)
+                           survey_information.author,
+                           survey_information.submit_url,
+                           survey_information.success_message,
+                           survey_information.error_message)
 
     for section in model.survey.sections :
         section_temp = Section(section.title, section.description)
@@ -34,7 +37,7 @@ def main():
         
         survey_object.sections.append(section_temp)
 
-    # create output folder
+    # create output folders
     output_folder = join(this_folder, 'generator_output')
     if not exists(output_folder):
         mkdir(output_folder)
@@ -57,10 +60,9 @@ def main():
     js_template = jinja_env.get_template('survey_js.j2')
 
     f = open(join(js_output_folder, "index.js"), 'w')
-    f.write(js_template.render())
+    f.write(js_template.render(survey=survey_object))
 
     copy(join(this_folder, 'templates/styles.css'), output_folder)
-   
    
 if __name__ == "__main__":
     main()

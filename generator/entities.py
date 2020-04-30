@@ -1,11 +1,14 @@
 class Survey(object):
 
-    def __init__(self, name, title, description, author):
+    def __init__(self, name, title, description, author, submit_url, success_message, error_message):
         self.name = name
         self.title = title
         self.description = description
         self.author = author
         self.sections = []
+        self.submit_url = submit_url
+        self.success_message = success_message
+        self.error_message = error_message
 
 class Section(object):
     

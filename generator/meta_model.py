@@ -25,16 +25,20 @@ class Parameter(object):
         return self.name
 
 def get_built_in_question_types():
+    # text question
     multiline_parameter = Parameter(None, 'multiline', True, 'boolean')
     text_question = QuestionType(None, 'TextQuestion', 'description', [multiline_parameter])
 
+    # choice question
     choices_parameter = Parameter(None, 'choices', True, 'string[]')
     multiple_parameter = Parameter(None, 'multiple', True, 'boolean')
     choice_question = QuestionType(None, 'ChoiceQuestion', 'description', [choices_parameter, multiple_parameter])
 
+    # drop down question
     options_parameter = Parameter(None, 'options', True, 'string[]')
     dropdown_question = QuestionType(None, 'DropDownQuestion', 'description', [options_parameter])
 
+    # linear scale question
     min_parameter = Parameter(None, 'min', True, 'integer')
     max_parameter = Parameter(None, 'max', True, 'integer')
     min_description_parameter = Parameter(None, 'min_description', True, 'string')
@@ -70,8 +74,8 @@ def get_built_in_question_types():
 
     return built_in_objects
 
-#checks if names of parameters in a question type are unique
-#also checks if the name of a question type is the same as the predefined question type
+# checks if names of parameters in a question type are unique
+# also checks if the name of a question type is the same as the predefined question type
 def question_type_object_processor(question_type):
 
     builtin_question_types =['TextQuestion', 'ChoiceQuestion', 'DropDownQuestion', 'LinearScaleQuestion', 'DateQuestion', 'TimeQuestion', 'LikertScaleQuestion', 'NumberQuestion']
@@ -85,7 +89,7 @@ def question_type_object_processor(question_type):
         if parameter_names.count(parameter_name) > 1:
             raise TextXSemanticError('Parameter with the name {} already exists in the question type {}! Names of parameters in a question type must be unique.'.format(parameter_name, question_type.name))
 
-#checks if all question names are unique
+# checks if all question names are unique
 def survey_content_object_processor(survey_content):
 
     question_names = []
@@ -97,8 +101,8 @@ def survey_content_object_processor(survey_content):
             raise TextXSemanticError('Question with the name {} already exists! Question names must be unique.'.format(question_name))
 
 
-#checks if all required parameters of the chosen question type are defined
-#also checks if a value for a parameter has been defined more than once
+# checks if all required parameters of the chosen question type are defined
+# also checks if a value for a parameter has been defined more than once
 def question_object_processor(question):
 
     parameters_in_question = [param.parameter for param in question.parameters]
@@ -111,7 +115,7 @@ def question_object_processor(question):
         if parameters_in_question.count(parameter) > 1:
             raise TextXSemanticError('Parameter {} of question type {} has been defined twice in question {}'.format(parameter.name, question.type.name, question.name))
 
-#checks if the type of the parameter value matches the defined parameter type
+# checks if the type of the parameter value matches the defined parameter type
 def parameter_value_object_processor(parameter_value):
 
     parameter_type = parameter_value.parameter.parameter_type
@@ -131,6 +135,7 @@ def parameter_value_object_processor(parameter_value):
 def get_metamodel():
 
     current_path = os.path.dirname(__file__)
+
     grammar_path = os.path.relpath('../grammar/grammar.tx', current_path)
 
     object_processors = {
@@ -140,6 +145,7 @@ def get_metamodel():
         'ParameterValue': parameter_value_object_processor,
     }
 
+    # build metamodel
     metamodel = metamodel_from_file(grammar_path, classes=[Parameter, QuestionType], builtins=get_built_in_question_types())
 
     metamodel.register_scope_providers({
