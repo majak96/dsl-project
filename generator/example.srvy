@@ -1,3 +1,10 @@
+question_type EmailQuestion {
+    description: "Question type with the special email input field"
+    parameters {
+        string placeholder
+    }
+}
+
 survey SoftwareEvaluation {
 
     title : "Software evaluation"
@@ -9,15 +16,29 @@ survey SoftwareEvaluation {
 
         @Required
         @TextQuestion
-        question Question1 {
-            title: "Insert your email address"
+        question Question0 {
+            title: "Name"
             multiline: false
+        } 
+
+        @Required
+        @EmailQuestion
+        question Question1 {
+            title: "Email address"
+            placeholder: "Insert your email address"
         }    
 
-        @DropDownQuestion
+        @ChoiceQuestion
         question Question2 {
             title: "How did you find out about this software?"
-            options: ["From a friend", "From a family member", "From a website", "Other"]
+            choices: ["From a friend", "From a family member", "From a website", "Other"]
+            multiple: true
+        }
+
+        @DropDownQuestion
+        question Question8 {
+            title: "In which language are you using this software?"
+            options: ["English", "German", "Spanish", "Italian", "Russian"]
         }
     }
 

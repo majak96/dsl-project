@@ -70,12 +70,48 @@ def get_built_in_question_types():
 
     return built_in_objects
 
+#checks if names of parameters in a question type are unique
+#also checks if the name of a question type is the same as the predefined question type
+def question_type_object_processor(question_type):
+
+    builtin_question_types =['TextQuestion', 'ChoiceQuestion', 'DropDownQuestion', 'LinearScaleQuestion']
+
+    if(question_type.name in builtin_question_types):
+        raise TextXSemanticError('A predefined question type {} already exists!'.format(question_type.name))
+
+    parameter_names = [parameter.name for parameter in question_type.parameters]
+    
+    for parameter_name in parameter_names:
+        if parameter_names.count(parameter_name) > 1:
+            raise TextXSemanticError('Parameter with the name {} already exists in the question type {}! Names of parameters in a question type must be unique.'.format(parameter_name, question_type.name))
+
+#checks if all question names are unique
+def survey_content_object_processor(survey_content):
+
+    question_names = []
+    for section in survey_content.sections:
+        question_names.extend([question.name for question in section.questions])
+        
+    for question_name in question_names:
+        if question_names.count(question_name) > 1:
+            raise TextXSemanticError('Question with the name {} already exists! Question names must be unique.'.format(question_name))
+
+
+#checks if all required parameters of the chosen question type are defined
+#also checks if a value for a parameter has been defined more than once
 def question_object_processor(question):
 
-    for parameter in question.type.parameters:
-        if parameter.required == True and parameter not in [param.parameter for param in question.parameters]:
-            raise TextXSemanticError('A required parameter {} is missing from a {}.'.format(parameter, question.type))
+    parameters_in_question = [param.parameter for param in question.parameters]
 
+    for parameter in question.type.parameters:
+        if parameter.required == True and parameter not in parameters_in_question:
+            raise TextXSemanticError('A required parameter {} of question type {} is missing from the question {}!'.format(parameter, question.type.name, question.name))
+
+    for parameter in parameters_in_question:
+        if parameters_in_question.count(parameter) > 1:
+            raise TextXSemanticError('Parameter {} of question type {} has been defined twice in question {}'.format(parameter.name, question.type.name, question.name))
+
+#checks if the type of the parameter value matches the defined parameter type
 def parameter_value_object_processor(parameter_value):
 
     parameter_type = parameter_value.parameter.parameter_type
@@ -90,7 +126,7 @@ def parameter_value_object_processor(parameter_value):
         (parameter_type == "integer" and (type(parameter_val).__name__ != "int")) or
         (parameter_type == "float" and (type(parameter_val).__name__ != "float")) or
         (parameter_type == "boolean" and (type(parameter_val).__name__ != "bool"))):
-        raise TextXSemanticError('Parameter {} should be a {}.'.format(parameter_value.parameter.name, parameter_type))
+        raise TextXSemanticError('The type of the parameter {} of question type {} must be {}.'.format(parameter_value.parameter.name, parameter_value.parent.type.name, parameter_type))
 
 def get_metamodel():
 
@@ -98,8 +134,10 @@ def get_metamodel():
     grammar_path = os.path.relpath('../grammar/grammar.tx', current_path)
 
     object_processors = {
+        'SurveyContent': survey_content_object_processor,
+        'QuestionType': question_type_object_processor,
         'Question': question_object_processor,
-        'ParameterValue': parameter_value_object_processor
+        'ParameterValue': parameter_value_object_processor,
     }
 
     metamodel = metamodel_from_file(grammar_path, classes=[Parameter, QuestionType], builtins=get_built_in_question_types())
