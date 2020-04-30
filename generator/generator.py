@@ -39,16 +39,25 @@ def main():
     if not exists(output_folder):
         mkdir(output_folder)
 
+    js_output_folder = join(this_folder, 'generator_output/js')
+    if not exists(js_output_folder):
+        mkdir(js_output_folder)
+
     # initialize template engine
     jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(join(this_folder, 'templates')),
         trim_blocks=True,
         lstrip_blocks=True)
 
-    template = jinja_env.get_template('survey.j2')
+    template = jinja_env.get_template('survey_html.j2')
 
     f = open(join(output_folder, "%s.html" % model.survey.name), 'w')
     f.write(template.render(survey=survey_object))
+
+    js_template = jinja_env.get_template('survey_js.j2')
+
+    f = open(join(js_output_folder, "index.js"), 'w')
+    f.write(js_template.render())
 
     copy(join(this_folder, 'templates/styles.css'), output_folder)
    

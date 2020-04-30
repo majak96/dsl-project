@@ -20,7 +20,7 @@
                     {% for column_input in question.parameters['columns_names'] %}
                     <td>
                         <div class="custom-control {% if question.parameters['multiple_in_row'] == True %}custom-checkbox{% else %}custom-radio{% endif %}">
-                            <input class="custom-control-input" {% if question.parameters['multiple_in_row'] == True%} type="checkbox" id="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{% else %}type="radio" name="radios{{question.name}}{{row_counter}}" id="radio{{question.name}}{{row_counter}}{{loop.index}}"{% endif%} value="{{column_input}}">
+                            <input class="custom-control-input" {% if question.parameters['multiple_in_row'] == True%} type="checkbox" id="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{% else %}type="radio" id="radio{{question.name}}{{row_counter}}{{loop.index}}"{% endif%} name="{{question.name}}_row{{row_counter}}" value="{{column_input}}">
                             <label class="custom-control-label" {% if question.parameters['multiple_in_row'] == True%}for="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{%else%}for="radio{{question.name}}{{row_counter}}{{loop.index}}"{%endif%}></label>
                         </div>
                     </td>

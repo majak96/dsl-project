@@ -1,0 +1,36 @@
+$(document).ready(function(){
+    $('#submitBtn').click(function () {
+		$('#myForm').click(function(){
+			$("#myForm").unbind();
+			$.ajax({
+			    url: $('#myForm').attr('action'),
+			    type: 'POST',
+			    data : $('#myForm').serialize(),
+			    success: function(){
+			    	$('#myForm')[0].reset();
+					$("#successAlertBox").fadeIn();
+					closeSuccessAlertBox();
+				},
+				error: function (message) {
+					$("#errorAlertBox").fadeIn();
+					closeErrorAlertBox();
+				}
+			});
+			return false;
+		});
+		
+	})
+});
+
+
+function closeSuccessAlertBox(){
+	window.setTimeout(function () {
+	  $("#successAlertBox").fadeOut(300)
+	}, 3000);
+}
+
+function closeErrorAlertBox(){
+	window.setTimeout(function () {
+	  $("#errorAlertBox").fadeOut(300)
+	}, 3000);
+}

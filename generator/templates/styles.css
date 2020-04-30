@@ -42,3 +42,26 @@ input, textarea, fieldset, select, .check-box-group {
     border-color:  rgb(17, 207, 197);
 }
 
+.alertBox {
+    position:absolute;
+    right:4%;
+    margin:0px auto;
+	text-align:center;
+    display:none;
+}
+
+.submit-btn{
+    background-color:  rgb(17, 207, 197);
+    border-color:  rgb(17, 207, 197);
+    float: right;
+    color: white;
+    font-weight: bold;
+}
+
+.submit-btn:hover{
+    background-color:  rgb(119, 226, 221);
+    border-color:  rgb(119, 226, 221);
+    float: right;
+    color: white;
+    font-weight: bold;
+}

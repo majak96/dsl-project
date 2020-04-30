@@ -3,18 +3,40 @@
         <h5 class="card-title mb-2">{{question.title}}</h5>
         <div class="check-box-group">
             <div class="row">
-                {% for index in range(question.parameters['max']-question.parameters['min']+1)%}
-                {% if index==0 %}
-                {{question.parameters['min_description']}} &nbsp; &nbsp;
-                {%endif%}
-                <div class="col custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="{{question.name}}-{{index}}" name="{{question.name}}">
-                    <label class="custom-control-label" for="{{question.name}}-{{index}}">{{question.parameters['min']+index}}</label>
+                <div class="col-2">
+                    {{question.parameters['min_description']}} &nbsp; &nbsp;
                 </div>
-                {% if (((question.parameters['min'])+index)==question.parameters['max']) %}
-                &nbsp;{{question.parameters['max_description']}} &nbsp;
+                    {%if question.parameters['max']>question.parameters['min'] %}
+                <div class="col-7" {%if (question.parameters['max']-question.parameters['min'])>=9 %} style=" overflow-x: scroll; overflow-y: hidden;" {%endif%}>
+                    <table style="width:100%;">
+                        <tr>
+                            {% for index in range(question.parameters['max']-question.parameters['min']+1)%}
+                            <td style="min-width:50px" >
+                                <div class="custom-radio" style="position: relative; left: 50%;">
+                                    <input type="radio" class="custom-control-input" id="{{question.name}}-{{index}}" value="{{question.parameters['min']+index}}" name="{{question.name}}">
+                                    <label class="custom-control-label" for="{{question.name}}-{{index}}">{{question.parameters['min']+index}}</label>
+                                </div>
+                            </td>
+                            {% endfor %}
+                {%else%}
+                <div class="col-7" {%if (question.parameters['min']-question.parameters['max'])>=9 %} style=" overflow-x: scroll; overflow-y: hidden;" {%endif%}>
+                    <table style="width:100%;">
+                        <tr>
+                            {% for index in range(question.parameters['min']-question.parameters['max']+1)%}
+                            <td style="min-width:50px" >
+                                <div class="custom-radio" style="position: relative; left: 50%;">
+                                    <input type="radio" class="custom-control-input" id="{{question.name}}-{{index}}" value="{{question.parameters['min']-index}}" name="{{question.name}}">
+                                    <label class="custom-control-label" for="{{question.name}}-{{index}}">{{question.parameters['min']-index}}</label>
+                                </div>
+                            </td>
+                            {% endfor %}
                 {%endif%}
-                {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-3">
+                    {{question.parameters['max_description']}}
+                </div>
             </div>
         </div>
     </div>

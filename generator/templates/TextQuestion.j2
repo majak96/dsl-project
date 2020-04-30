@@ -2,9 +2,9 @@
     <div class="card-body">
         <h5 class="card-title mb-2">{{question.title}}</h5>
         {% if question.parameters['multiline'] %}
-        <textarea class="form-field" placeholder="Your answer"></textarea>
+        <textarea name="{{question.name}}" class="form-field" placeholder="Your answer"></textarea>
         {% else %}
-        <input type="text" placeholder="Your answer" class="form-field">
+        <input type="text" name="{{question.name}}" placeholder="Your answer" class="form-field" required>
         {% endif %}
     </div>
 </div>

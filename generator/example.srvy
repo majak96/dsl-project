@@ -26,17 +26,32 @@ survey SoftwareEvaluation {
         question Question1 {
             title: "Email address"
             placeholder: "Insert your email address"
-        }    
+        } 
+
+        @NumberQuestion
+        question Question2 {
+            title: "How many hours a day do you spend using this software?"
+        }  
+
+        @DateQuestion
+        question Question3 {
+            title: "When did you install this software?"
+        }
+
+        @TimeQuestion
+        question Question4 {
+            title: "When do you usually start to use this software?"
+        }   
 
         @ChoiceQuestion
-        question Question2 {
+        question Question5 {
             title: "How did you find out about this software?"
             choices: ["From a friend", "From a family member", "From a website", "Other"]
             multiple: true
         }
 
         @DropDownQuestion
-        question Question8 {
+        question Question6 {
             title: "In which language are you using this software?"
             options: ["English", "German", "Spanish", "Italian", "Russian"]
         }
@@ -47,21 +62,21 @@ survey SoftwareEvaluation {
         title: "Software evaluation"
 
         @ChoiceQuestion
-        question Question3 {
+        question Question7 {
             title: "How satisfied are you with the reliability of this software?"
             choices: ["Very satisfied", "Somewhat satisfied", "Not so satisfied", "Not satisfied at all"]
             multiple: false
         }
 
         @ChoiceQuestion
-        question Question4 {
+        question Question8 {
             title: "How satisfied are you with the security of this software?"
             choices: ["Very satisfied", "Somewhat satisfied", "Not so satisfied", "Not satisfied at all"]
             multiple: false
         }   
 
         @ChoiceQuestion
-        question Question5 {
+        question Question9 {
             title: "How satisfied are you with the look and feel of this software?"
             choices: ["Very satisfied", "Somewhat satisfied", "Not so satisfied", "Not satisfied at all"]
             multiple: false
@@ -76,7 +91,7 @@ survey SoftwareEvaluation {
         title: "Conclusion"
 
         @LinearScaleQuestion
-        question Question6 {
+        question Question10 {
             title: "How likely is it that you would recommend this software to a friend or a family member?"
             min: 0
             max: 5
@@ -85,9 +100,10 @@ survey SoftwareEvaluation {
         } 
 
         @TextQuestion
-        question Question7 {
+        question Question11 {
             title: "Do you have any thoughts on how to improve this software?"
             multiline: true
-        }   
+        }
+
     }
 }

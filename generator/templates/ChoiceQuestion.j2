@@ -6,8 +6,8 @@
                 <div class="col-sm-10">
                     {% for choice in question.parameters['choices'] %}
                     <div class="custom-control {% if question.parameters['multiple'] == True %}custom-checkbox{% else %}custom-radio{% endif %}">
-                        <input class="custom-control-input" {% if question.parameters['multiple'] == True%} type="checkbox" id="checkbox{{question.name}}{{loop.index}}"{% else %}type="radio" name="radios{{question.name}}" id="radio{{question.name}}{{loop.index}}"{% endif%}>
-                        <label class="custom-control-label" {% if question.parameters['multiple'] == True%}for="checkbox{{question.name}}{{loop.index}}"{%else%}for="radio{{question.name}}{{loop.index}}"{%endif%}>{{choice}}</label>
+                        <input class="custom-control-input" {% if question.parameters['multiple'] == True%} type="checkbox" id="checkbox{{question.name}}{{loop.index}}"{% else %}type="radio" id="radio{{question.name}}{{loop.index}}"{% endif%} name="{{question.name}}" value="{{choice}}">
+                        <label class="custom-control-label" {% if question.parameters['multiple'] == True%}for="checkbox{{question.name}}{{loop.index}}"{%else%}for="radio{{question.name}}{{loop.index}}"{%endif%} >{{choice}}</label>
                     </div>
                     {% endfor %}
                 </div>
