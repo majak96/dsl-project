@@ -74,7 +74,7 @@ def get_built_in_question_types():
 #also checks if the name of a question type is the same as the predefined question type
 def question_type_object_processor(question_type):
 
-    builtin_question_types =['TextQuestion', 'ChoiceQuestion', 'DropDownQuestion', 'LinearScaleQuestion']
+    builtin_question_types =['TextQuestion', 'ChoiceQuestion', 'DropDownQuestion', 'LinearScaleQuestion', 'DateQuestion', 'TimeQuestion', 'LikertScaleQuestion', 'NumberQuestion']
 
     if(question_type.name in builtin_question_types):
         raise TextXSemanticError('A predefined question type {} already exists!'.format(question_type.name))
