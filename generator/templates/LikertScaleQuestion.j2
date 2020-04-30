@@ -1,0 +1,34 @@
+<div class="card card-question mt-4" style="overflow-x: auto;">
+    <div class="card-body">
+        <h5 class="card-title mb-2">{{question.title}}</h5>
+        <div>
+            <table class="table table-borderless table-striped table-fit">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    {% for column in question.parameters['columns_names'] %}
+                    <td scope="col">{{column}}</td>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in question.parameters['rows_names'] %}
+                {% set row_counter= loop.index %}
+                <div>
+                <tr>
+                    <td scope="row">{{row}}</td>
+                    {% for column_input in question.parameters['columns_names'] %}
+                    <td>
+                        <div class="custom-control {% if question.parameters['multiple_in_row'] == True %}custom-checkbox{% else %}custom-radio{% endif %}">
+                            <input class="custom-control-input" {% if question.parameters['multiple_in_row'] == True%} type="checkbox" id="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{% else %}type="radio" name="radios{{question.name}}{{row_counter}}" id="radio{{question.name}}{{row_counter}}{{loop.index}}"{% endif%} value="{{column_input}}">
+                            <label class="custom-control-label" {% if question.parameters['multiple_in_row'] == True%}for="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{%else%}for="radio{{question.name}}{{row_counter}}{{loop.index}}"{%endif%}></label>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

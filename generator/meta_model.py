@@ -41,11 +41,31 @@ def get_built_in_question_types():
     max_description_parameter = Parameter(None, 'max_description', True, 'string')
     linear_scale_question = QuestionType(None, 'LinearScaleQuestion', 'description', [min_parameter, max_parameter, min_description_parameter, max_description_parameter])
 
+    # number question
+    number_question = QuestionType(None, 'NumberQuestion', 'description', [])
+
+    # date question
+    date_question = QuestionType(None, 'DateQuestion', 'description', [])
+
+    # time question
+    time_question = QuestionType(None, 'TimeQuestion', 'description', [])
+
+    # likert scale question
+    rows_names = Parameter(None, 'rows_names', True, 'string[]')
+    columns_names = Parameter(None, 'columns_names', True, 'string[]')
+    required_per_row = Parameter(None, 'required_per_row', False, 'boolean')
+    multiple_in_row = Parameter(None, 'multiple_in_row', True, 'boolean')
+    likert_scale_question = QuestionType(None, 'LikertScaleQuestion', 'description', [rows_names, columns_names, required_per_row, multiple_in_row])
+
     built_in_objects =  {
         'TextQuestion': text_question,
         'ChoiceQuestion': choice_question,
         'DropDownQuestion': dropdown_question,
         'LinearScaleQuestion': linear_scale_question,
+        'DateQuestion' : date_question,
+        'TimeQuestion' : time_question,
+        'LikertScaleQuestion' : likert_scale_question,
+        'NumberQuestion' : number_question
     }
 
     return built_in_objects
