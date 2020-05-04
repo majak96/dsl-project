@@ -27,7 +27,10 @@ class Parameter(object):
 def get_built_in_question_types():
     # text question
     multiline_parameter = Parameter(None, 'multiline', True, 'boolean')
-    text_question = QuestionType(None, 'TextQuestion', 'description', [multiline_parameter])
+    min_char_parameter = Parameter(None, 'min_length', False, 'integer')
+    max_char_parameter = Parameter(None, 'max_length', False, 'integer')
+    placeholder_parameter = Parameter(None, 'placeholder', False, 'string')
+    text_question = QuestionType(None, 'TextQuestion', 'description', [multiline_parameter, max_char_parameter, min_char_parameter, placeholder_parameter])
 
     # choice question
     choices_parameter = Parameter(None, 'choices', True, 'string[]')
@@ -39,15 +42,18 @@ def get_built_in_question_types():
     dropdown_question = QuestionType(None, 'DropDownQuestion', 'description', [options_parameter])
 
     # linear scale question
-    min_parameter = Parameter(None, 'min', True, 'integer')
-    max_parameter = Parameter(None, 'max', True, 'integer')
+    min_value_parameter = Parameter(None, 'min_value', True, 'integer')
+    max_value_parameter = Parameter(None, 'max_value', True, 'integer')
     min_description_parameter = Parameter(None, 'min_description', True, 'string')
     max_description_parameter = Parameter(None, 'max_description', True, 'string')
-    linear_scale_question = QuestionType(None, 'LinearScaleQuestion', 'description', [min_parameter, max_parameter, min_description_parameter, max_description_parameter])
+    linear_scale_question = QuestionType(None, 'LinearScaleQuestion', 'description', [min_value_parameter, max_value_parameter, min_description_parameter, max_description_parameter])
 
     # number question
-    number_question = QuestionType(None, 'NumberQuestion', 'description', [])
-
+    min_number_parameter = Parameter(None, 'min', False, 'integer')
+    max_number_parameter = Parameter(None, 'max', False, 'integer')
+    placeholder_number_parameter = Parameter(None, 'placeholder', False, 'string')
+    number_question = QuestionType(None, 'NumberQuestion', 'description', [min_number_parameter,max_number_parameter, placeholder_number_parameter])
+   
     # date question
     date_question = QuestionType(None, 'DateQuestion', 'description', [])
 
@@ -57,9 +63,8 @@ def get_built_in_question_types():
     # likert scale question
     rows_names = Parameter(None, 'rows_names', True, 'string[]')
     columns_names = Parameter(None, 'columns_names', True, 'string[]')
-    required_per_row = Parameter(None, 'required_per_row', False, 'boolean')
     multiple_in_row = Parameter(None, 'multiple_in_row', True, 'boolean')
-    likert_scale_question = QuestionType(None, 'LikertScaleQuestion', 'description', [rows_names, columns_names, required_per_row, multiple_in_row])
+    likert_scale_question = QuestionType(None, 'LikertScaleQuestion', 'description', [rows_names, columns_names, multiple_in_row])
 
     built_in_objects =  {
         'TextQuestion': text_question,

@@ -22,8 +22,9 @@ input, textarea, fieldset, select, .check-box-group {
     outline: 0;
     padding: 7px 0;
     background: transparent;
-    transition: border-color 0.2s;
+    transition: 0.2s;
   }
+
 
 .questionnaire {
     margin-left: 8%;
@@ -54,7 +55,6 @@ input, textarea, fieldset, select, .check-box-group {
     border-color:  rgb(17, 207, 197);
     float: right;
     color: white;
-    font-weight: bold;
 }
 
 .submit-btn:hover{
@@ -62,5 +62,18 @@ input, textarea, fieldset, select, .check-box-group {
     border-color:  rgb(119, 226, 221);
     float: right;
     color: white;
-    font-weight: bold;
+}
+
+.errorTemplate {
+    border-bottom: 1px solid rgb(255, 0, 0) !important;
+}
+
+
+.errorMessage{
+    color: rgb(255, 0, 0);
+    margin-bottom: 10px;
+}
+
+.errorBorder {
+    border: 1px solid rgb(255, 0, 0);
 }

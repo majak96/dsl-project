@@ -1,11 +1,6 @@
-<div class="card card-question mt-4">
-    <div class="card-body">
-        <h5 class="card-title mb-2">{{question.title}}</h5>
-        <input type="email" name="{{question.name}}" {% if question.parameters['placeholder'] -%} 
-                                placeholder="{{question.parameters['placeholder']}}" 
-                            {%- else -%} 
-                                placeholder="email@example.com" 
-                            {%- endif -%}
-                            class="form-field">
-    </div>
-</div>
+<input {% if question.required %}required{% endif %} type="email" name="{{question.name}}" {% if question.parameters['placeholder'] -%} 
+                        placeholder="{{question.parameters['placeholder']}}" 
+                    {%- else -%} 
+                        placeholder="email@example.com" 
+                    {%- endif -%}
+                    class="form-field">

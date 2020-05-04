@@ -9,6 +9,7 @@ survey SoftwareEvaluation {
 
     title : "Software evaluation"
     description: "Description of this awesome survey"
+    author: "Tim 3"
 
     submit_url:"https://en96sm60rk9gv.x.pipedream.net"
 
@@ -38,6 +39,7 @@ survey SoftwareEvaluation {
             title: "When did you install this software?"
         }
 
+        @Required
         @ChoiceQuestion
         question Question3 {
             title: "How did you find out about this software?"
@@ -45,6 +47,7 @@ survey SoftwareEvaluation {
             multiple: true
         }
 
+        @Required
         @DropDownQuestion
         question Question4 {
             title: "In which language are you using this software?"
@@ -55,17 +58,20 @@ survey SoftwareEvaluation {
     /*software evaluation section*/
     section {
         title: "Software evaluation"
-
+        
         @TimeQuestion
         question Question5 {
             title: "When do you usually start to use this software?"
-        }  
+        }
 
         @NumberQuestion
         question Question6 {
             title: "How many hours a day do you spend using this software?"
+            min: 0
+            max: 24
         }  
 
+        @Required
         @LikertScaleQuestion
         question Question7 {
             title: "How satisfied are you with:"
@@ -85,6 +91,7 @@ survey SoftwareEvaluation {
     section {
         title: "Conclusion"
 
+        @Required
         @ChoiceQuestion
         question Question8 {
             title: "Do you plan to continue using this software?"
@@ -92,11 +99,12 @@ survey SoftwareEvaluation {
             multiple: false
         }
 
+        @Required
         @LinearScaleQuestion
         question Question9 {
             title: "How likely is it that you would recommend this software to a friend or a family member?"
-            min: 0
-            max: 5
+            min_value: 0
+            max_value: 5
             min_description: "not at all likely"
             max_description: "extremely likely"
         } 
@@ -105,6 +113,7 @@ survey SoftwareEvaluation {
         question Question10 {
             title: "Do you have any thoughts on how to improve this software?"
             multiline: true
+            max_length: 200
         }
 
     }

@@ -1,10 +1,5 @@
-<div class="card card-question mt-4">
-    <div class="card-body">
-        <h5 class="card-title mb-2">{{question.title}}</h5>
-        {% if question.parameters['multiline'] %}
-        <textarea name="{{question.name}}" class="form-field" placeholder="Your answer"></textarea>
-        {% else %}
-        <input type="text" name="{{question.name}}" placeholder="Your answer" class="form-field" required>
-        {% endif %}
-    </div>
-</div>
+{% if question.parameters['multiline'] %}
+<textarea {% if question.required %}required{% endif %} name="{{question.name}}" {% if question.parameters['minlength'] != null %} minlength="{{question.parameters['minlength']}}" {%  endif %} {% if question.parameters['maxlength'] != null%} maxlength="{{question.parameters['maxlength']}}" {%  endif %} class="form-field form-control"  {% if question.parameters['placeholder'] %} placeholder="{{question.parameters['placeholder']}}" {% else %} placeholder="Your answer" {% endif %}></textarea>
+{% else %}
+<input {% if question.required %}required{% endif %} type="text" {% if question.parameters['minlength'] != null %} minlength="{{question.parameters['minlength']}}" {%  endif %} {% if question.parameters['maxlength'] != null%} maxlength="{{question.parameters['maxlength']}}" {%  endif %} name="{{question.name}}" class="form-field"  {% if question.parameters['placeholder'] %} placeholder="{{question.parameters['placeholder']}}" {% else %} placeholder="Your answer" {% endif %}>
+{% endif %}
