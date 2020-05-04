@@ -46,6 +46,10 @@ def main():
     if not exists(js_output_folder):
         mkdir(js_output_folder)
 
+    css_output_folder = join(this_folder, 'generator_output/css')
+    if not exists(css_output_folder):
+        mkdir(css_output_folder)
+
     # initialize template engine
     jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(join(this_folder, 'templates')),
@@ -59,10 +63,10 @@ def main():
 
     js_template = jinja_env.get_template('survey_js.j2')
 
-    f = open(join(js_output_folder, "index.js"), 'w')
+    f = open(join(js_output_folder, 'index.js'), 'w')
     f.write(js_template.render(survey=survey_object))
 
-    copy(join(this_folder, 'templates/styles.css'), output_folder)
+    copy(join(this_folder, 'templates/styles.css'), css_output_folder)
    
 if __name__ == "__main__":
     main()
