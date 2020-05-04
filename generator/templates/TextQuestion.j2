@@ -1,0 +1,5 @@
+{% if question.parameters['multiline'] %}
+<textarea {% if question.required %}required{% endif %} name="{{question.name}}" {% if question.parameters['minlength'] != null %} minlength="{{question.parameters['minlength']}}" {%  endif %} {% if question.parameters['maxlength'] != null%} maxlength="{{question.parameters['maxlength']}}" {%  endif %} class="form-field form-control"  {% if question.parameters['placeholder'] %} placeholder="{{question.parameters['placeholder']}}" {% else %} placeholder="Your answer" {% endif %}></textarea>
+{% else %}
+<input {% if question.required %}required{% endif %} type="text" {% if question.parameters['minlength'] != null %} minlength="{{question.parameters['minlength']}}" {%  endif %} {% if question.parameters['maxlength'] != null%} maxlength="{{question.parameters['maxlength']}}" {%  endif %} name="{{question.name}}" class="form-field"  {% if question.parameters['placeholder'] %} placeholder="{{question.parameters['placeholder']}}" {% else %} placeholder="Your answer" {% endif %}>
+{% endif %}

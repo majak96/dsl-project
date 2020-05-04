@@ -20,6 +20,11 @@ SurveyInformation:
     'title' ':' title=STRING
     ('description' ':' description=STRING)?
     ('author' ':' author=STRING)?
+
+    'submit_url' ':' submit_url=STRING
+    
+    ('success_message' ':' success_message=STRING)?
+    ('error_message' ':' error_message=STRING)?
 ;
 
 Section:

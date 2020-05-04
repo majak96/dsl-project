@@ -1,0 +1,7 @@
+Arpeggio==1.9.2
+click==7.1.1
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+pkg-resources==0.0.0
+-e git+git@github.com:textX/textX.git@c4a781c42d3cdad182defc06f6f410894b392b5c#egg=textX
+xdot==1.1

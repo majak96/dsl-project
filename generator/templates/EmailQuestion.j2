@@ -1,0 +1,6 @@
+<input {% if question.required %}required{% endif %} type="email" name="{{question.name}}" {% if question.parameters['placeholder'] -%} 
+                        placeholder="{{question.parameters['placeholder']}}" 
+                    {%- else -%} 
+                        placeholder="email@example.com" 
+                    {%- endif -%}
+                    class="form-field">
