@@ -5,8 +5,9 @@ import jinja2
 from entities import Survey, Section, Question
 from meta_model import get_metamodel
 import datetime
+import sys
 
-def main():
+def generate(survey_file):
 
     now = datetime.datetime.utcnow().strftime("%a, %b %d, %Y %X")
     
@@ -15,7 +16,7 @@ def main():
     metamodel = get_metamodel()
 
     # build model
-    model = metamodel.model_from_file(join(this_folder, 'example.srvy'))
+    model = metamodel.model_from_file(survey_file)
 
     survey_name = model.survey.name
     survey_information = model.survey.survey_info
@@ -72,4 +73,10 @@ def main():
     copy(join(this_folder, 'templates/styles.css'), css_output_folder)
    
 if __name__ == "__main__":
-    main()
+    
+    if len(sys.argv) < 2:
+        print('Error: Survey file is missing.')
+    else:
+        survey_file = sys.argv[1]
+        generate(survey_file)
+        
