@@ -1,3 +1,4 @@
+<!-- Generated based on the template: {{ self._TemplateReference__context.name }} -->
 <select {% if question.required %}required{% endif %} name="{{question.name}}" class="form-control">
     {% for option in question.parameters['options'] %}
     <option value="{{option}}" {%- if loop.index==1 %} selected{% endif %}>{{option}}</option>

@@ -1,29 +1,29 @@
+<!-- Generated based on the template: {{ self._TemplateReference__context.name }} -->
 <div>
     <table class="table table-borderless table-striped table-fit">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            {% for column in question.parameters['columns_names'] %}
-            <td scope="col">{{column}}</td>
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                {% for column in question.parameters['columns_names'] %}
+                <td scope="col">{{column}}</td>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in question.parameters['rows_names'] %}
+            {% set row_counter= loop.index %}
+            <tr>
+                <td scope="row">{{row}}</td>
+                {% for column_input in question.parameters['columns_names'] %}
+                <td>
+                    <div class="custom-control {% if question.parameters['multiple_in_row'] == True %}custom-checkbox{% else %}custom-radio{% endif %}">
+                        <input {% if question.required %}required{% endif %}  class="custom-control-input" {% if question.parameters['multiple_in_row'] == True%} type="checkbox" id="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{% else %}type="radio" id="radio{{question.name}}{{row_counter}}{{loop.index}}"{% endif%} name="{{question.name}}_row{{row_counter}}" value="{{column_input}}">
+                        <label class="custom-control-label" {% if question.parameters['multiple_in_row'] == True%}for="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{%else%}for="radio{{question.name}}{{row_counter}}{{loop.index}}"{%endif%}></label>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in question.parameters['rows_names'] %}
-        {% set row_counter= loop.index %}
-        <div>
-        <tr>
-            <td scope="row">{{row}}</td>
-            {% for column_input in question.parameters['columns_names'] %}
-            <td>
-                <div class="custom-control {% if question.parameters['multiple_in_row'] == True %}custom-checkbox{% else %}custom-radio{% endif %}">
-                    <input {% if question.required %}required{% endif %}  class="custom-control-input" {% if question.parameters['multiple_in_row'] == True%} type="checkbox" id="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{% else %}type="radio" id="radio{{question.name}}{{row_counter}}{{loop.index}}"{% endif%} name="{{question.name}}_row{{row_counter}}" value="{{column_input}}">
-                    <label class="custom-control-label" {% if question.parameters['multiple_in_row'] == True%}for="checkbox{{question.name}}{{row_counter}}{{loop.index}}"{%else%}for="radio{{question.name}}{{row_counter}}{{loop.index}}"{%endif%}></label>
-                </div>
-            </td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
+        </tbody>
     </table>
 </div>

@@ -4,8 +4,11 @@ from shutil import copy
 import jinja2
 from entities import Survey, Section, Question
 from meta_model import get_metamodel
+import datetime
 
 def main():
+
+    now = datetime.datetime.utcnow().strftime("%a, %b %d, %Y %X")
     
     this_folder = dirname(__file__)
 
@@ -59,12 +62,12 @@ def main():
     template = jinja_env.get_template('survey_html.j2')
 
     f = open(join(output_folder, "%s.html" % model.survey.name), 'w')
-    f.write(template.render(survey=survey_object))
+    f.write(template.render(survey=survey_object, datetime=now))
 
     js_template = jinja_env.get_template('survey_js.j2')
 
     f = open(join(js_output_folder, 'index.js'), 'w')
-    f.write(js_template.render(survey=survey_object))
+    f.write(js_template.render(survey=survey_object, datetime=now))
 
     copy(join(this_folder, 'templates/styles.css'), css_output_folder)
    
