@@ -1,0 +1,96 @@
+<!-- Generated on: {{datetime}}
+Generated based on the template: {{ self._TemplateReference__context.name }} -->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- jQuery validation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="js/index.js"></script>
+    </head>
+    
+    <body class="container main-body px-5">
+        <div class="questionnaire">
+            <div class="card mt-5">
+                <div class="card-header"></div>
+                <div class="card-body my-2 mx-2">
+                    {% if survey.author %}
+                    <h6 class="mt-4">Author: {{survey.author}}</h6>
+                    {% endif %}
+                    <h3 class="card-title">{{survey.title}}</h3>
+                    <h6 class="card-text text-muted" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        {{survey.description}}
+                    </h6>
+                    <h6 style="color:red" class="mt-4"> * Required </h6>
+                </div>
+            </div>
+            <form id="myForm" novalidate >
+                {% for section in survey.sections %}
+                <section>
+                    <div class="card mt-5">
+                        <div class="card-header" style="color:white; font-weight: 600;">Section {{loop.index}} of {{survey.sections|length}}</div>
+                        <div class="card-body my-2 mx-2">
+                            <h4 class="card-title">{{section.title}}</h4>
+                            {% if section.description %}
+                            <h6 class="card-text text-muted" style="margin-top: 1rem; margin-bottom: 0.5rem;">
+                            {{section.description}}
+                            </h6>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% for question in section.questions %}
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">{{question.title}}{% if question.required %}<span style="color:red"> * </span>{% endif %}</h5>
+                            {% filter indent(first= True, width=28) %}
+                                {% include question.qtype+".j2" ignore missing %}
+
+                            {% endfilter %}
+                        </div>
+                    </div>
+                {% endfor %}
+                
+                </section>
+                {% endfor %}
+                <button type="submit" class="btn btn-lg submit-btn mt-3 mb-3" id="submitBtn">Submit Form</button>
+            </form>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="alert alert-primary alertBox alert-dismissable" id="successAlertBox">
+                    <button type="button" class="close alert-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% if survey.success_message %}
+                    <p>{{survey.success_message}}</p>
+                    {% else %}
+                    <p>Successfully submited!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="alert alert-danger alertBox alert-dismissable" id="errorAlertBox">
+                    <button type="button" class="close alert-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% if survey.error_message %}
+                    <p>{{survey.error_message}}</p>
+                    {% else %}
+                    <p>An error occured! Please try again.</p> 
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

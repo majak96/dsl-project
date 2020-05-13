@@ -1,0 +1,13 @@
+<!-- Generated based on the template: {{ self._TemplateReference__context.name }} -->
+<fieldset class="form-group" >
+    <div class="row">
+        <div class="col-sm-10">
+            {% for choice in question.parameters['choices'] %}
+            <div class="custom-control {% if question.parameters['multiple'] == True %}custom-checkbox{% else %}custom-radio{% endif %}">
+                <input {% if question.required %}required{% endif %} class="custom-control-input" {% if question.parameters['multiple'] == True%} type="checkbox"{% else %}type="radio"{% endif%}  id="{{question.name}}{{loop.index}}" name="{{question.name}}" value="{{choice}}">
+                <label class="custom-control-label" for="{{question.name}}{{loop.index}}">{{choice}}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</fieldset>
