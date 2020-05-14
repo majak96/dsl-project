@@ -1,0 +1,21 @@
+QuestionTypes:
+    question_types *= QuestionType
+;
+
+QuestionType:
+    'question_type' name=ID '{'
+        ('description' ':' description=STRING)?
+        'parameters' '{'
+            parameters*=Parameter
+        '}'
+    '}'    
+;
+
+Parameter:
+    required?='@Required'
+    parameter_type=ParameterType name=ID
+;
+
+ParameterType:
+    ('string' | 'integer' | 'float' | 'boolean')('[]')?
+;

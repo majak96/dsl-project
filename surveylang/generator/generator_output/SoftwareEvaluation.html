@@ -1,0 +1,407 @@
+<!-- Generated on: Tue, May 12, 2020 17:22:49
+Generated based on the template: survey_html.j2 -->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- jQuery validation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="js/index.js"></script>
+    </head>
+    
+    <body class="container main-body px-5">
+        <div class="questionnaire">
+            <div class="card mt-5">
+                <div class="card-header"></div>
+                <div class="card-body my-2 mx-2">
+                    <h6 class="mt-4">Author: Tim 3</h6>
+                    <h3 class="card-title">Software evaluation</h3>
+                    <h6 class="card-text text-muted" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        Description of this awesome survey
+                    </h6>
+                    <h6 style="color:red" class="mt-4"> * Required </h6>
+                </div>
+            </div>
+            <form id="myForm" novalidate >
+                <section>
+                    <div class="card mt-5">
+                        <div class="card-header" style="color:white; font-weight: 600;">Section 1 of 3</div>
+                        <div class="card-body my-2 mx-2">
+                            <h4 class="card-title">General information</h4>
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Name<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: TextQuestion.j2 -->
+                            <input required type="text"   name="Question0" class="form-field"   placeholder="Your answer" >
+
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Email address<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: EmailQuestion.j2 -->
+                            <input required type="email" name="Question1" placeholder="Insert your email address"class="form-field">
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">When did you install this software?</h5>
+                            <!-- Generated based on the template: DateQuestion.j2 -->
+                            <input   type="date" placeholder="Your answer" class="form-field" name="Question2">
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">How did you find out about this software?<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: ChoiceQuestion.j2 -->
+                            <fieldset class="form-group" >
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <div class="custom-control custom-checkbox">
+                                            <input required class="custom-control-input"  type="checkbox"  id="Question31" name="Question3" value="From a friend">
+                                            <label class="custom-control-label" for="Question31">From a friend</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input required class="custom-control-input"  type="checkbox"  id="Question32" name="Question3" value="From a family member">
+                                            <label class="custom-control-label" for="Question32">From a family member</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input required class="custom-control-input"  type="checkbox"  id="Question33" name="Question3" value="From a website">
+                                            <label class="custom-control-label" for="Question33">From a website</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input required class="custom-control-input"  type="checkbox"  id="Question34" name="Question3" value="Other">
+                                            <label class="custom-control-label" for="Question34">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">In which language are you using this software?<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: DropDownQuestion.j2 -->
+                            <select required name="Question4" class="form-control">
+                                <option value="English" selected>English</option>
+                                <option value="German">German</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Russian">Russian</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                </section>
+                <section>
+                    <div class="card mt-5">
+                        <div class="card-header" style="color:white; font-weight: 600;">Section 2 of 3</div>
+                        <div class="card-body my-2 mx-2">
+                            <h4 class="card-title">Software evaluation</h4>
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">When do you usually start to use this software?</h5>
+                            <!-- Generated based on the template: TimeQuestion.j2 -->
+                            <input  type="time" placeholder="Your answer" class="form-field" name="Question5">
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">How many hours a day do you spend using this software?</h5>
+                            <!-- Generated based on the template: NumberQuestion.j2 -->
+                            <input  type="number"  max="24" min="0" class="form-field" name="Question6"  placeholder="Your answer" >
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">How satisfied are you with:<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: LikertScaleQuestion.j2 -->
+                            <div>
+                                <table class="table table-borderless table-striped table-fit">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <td scope="col">Not satisfied at all</td>
+                                            <td scope="col">Not so satisfied</td>
+                                            <td scope="col">Somewhat satisfied</td>
+                                            <td scope="col">Very satisfied</td>
+                                            <td scope="col">Extremely satisfied</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">The reliability of this software</td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion711" name="Question7_row1" value="Not satisfied at all">
+                                                    <label class="custom-control-label" for="radioQuestion711"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion712" name="Question7_row1" value="Not so satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion712"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion713" name="Question7_row1" value="Somewhat satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion713"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion714" name="Question7_row1" value="Very satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion714"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion715" name="Question7_row1" value="Extremely satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion715"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">The security of this software</td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion721" name="Question7_row2" value="Not satisfied at all">
+                                                    <label class="custom-control-label" for="radioQuestion721"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion722" name="Question7_row2" value="Not so satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion722"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion723" name="Question7_row2" value="Somewhat satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion723"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion724" name="Question7_row2" value="Very satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion724"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion725" name="Question7_row2" value="Extremely satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion725"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">The software's ease of use</td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion731" name="Question7_row3" value="Not satisfied at all">
+                                                    <label class="custom-control-label" for="radioQuestion731"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion732" name="Question7_row3" value="Not so satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion732"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion733" name="Question7_row3" value="Somewhat satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion733"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion734" name="Question7_row3" value="Very satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion734"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion735" name="Question7_row3" value="Extremely satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion735"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">The look and feel of this software</td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion741" name="Question7_row4" value="Not satisfied at all">
+                                                    <label class="custom-control-label" for="radioQuestion741"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion742" name="Question7_row4" value="Not so satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion742"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion743" name="Question7_row4" value="Somewhat satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion743"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion744" name="Question7_row4" value="Very satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion744"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-radio">
+                                                    <input required  class="custom-control-input" type="radio" id="radioQuestion745" name="Question7_row4" value="Extremely satisfied">
+                                                    <label class="custom-control-label" for="radioQuestion745"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                
+                </section>
+                <section>
+                    <div class="card mt-5">
+                        <div class="card-header" style="color:white; font-weight: 600;">Section 3 of 3</div>
+                        <div class="card-body my-2 mx-2">
+                            <h4 class="card-title">Conclusion</h4>
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Do you plan to continue using this software?<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: ChoiceQuestion.j2 -->
+                            <fieldset class="form-group" >
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <div class="custom-control custom-radio">
+                                            <input required class="custom-control-input" type="radio"  id="Question81" name="Question8" value="Yes">
+                                            <label class="custom-control-label" for="Question81">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input required class="custom-control-input" type="radio"  id="Question82" name="Question8" value="No">
+                                            <label class="custom-control-label" for="Question82">No</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input required class="custom-control-input" type="radio"  id="Question83" name="Question8" value="I'm not sure">
+                                            <label class="custom-control-label" for="Question83">I'm not sure</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">How likely is it that you would recommend this software to a friend or a family member?<span style="color:red"> * </span></h5>
+                            <!-- Generated based on the template: LinearScaleQuestion.j2 -->
+                            <div class="check-box-group">
+                                <div class="row">
+                                    <div class="col-2">
+                                        not at all likely &nbsp; &nbsp;
+                                    </div>
+                                    <div class="col-7" >
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td style="min-width:50px" >
+                                                    <div class="custom-radio" style="position: relative; left: 50%;">
+                                                        <input required  type="radio" class="custom-control-input" id="Question9-0" value="0" name="Question9">
+                                                        <label class="custom-control-label" for="Question9-0">0</label>
+                                                    </div>
+                                                </td>
+                                                <td style="min-width:50px" >
+                                                    <div class="custom-radio" style="position: relative; left: 50%;">
+                                                        <input required  type="radio" class="custom-control-input" id="Question9-1" value="1" name="Question9">
+                                                        <label class="custom-control-label" for="Question9-1">1</label>
+                                                    </div>
+                                                </td>
+                                                <td style="min-width:50px" >
+                                                    <div class="custom-radio" style="position: relative; left: 50%;">
+                                                        <input required  type="radio" class="custom-control-input" id="Question9-2" value="2" name="Question9">
+                                                        <label class="custom-control-label" for="Question9-2">2</label>
+                                                    </div>
+                                                </td>
+                                                <td style="min-width:50px" >
+                                                    <div class="custom-radio" style="position: relative; left: 50%;">
+                                                        <input required  type="radio" class="custom-control-input" id="Question9-3" value="3" name="Question9">
+                                                        <label class="custom-control-label" for="Question9-3">3</label>
+                                                    </div>
+                                                </td>
+                                                <td style="min-width:50px" >
+                                                    <div class="custom-radio" style="position: relative; left: 50%;">
+                                                        <input required  type="radio" class="custom-control-input" id="Question9-4" value="4" name="Question9">
+                                                        <label class="custom-control-label" for="Question9-4">4</label>
+                                                    </div>
+                                                </td>
+                                                <td style="min-width:50px" >
+                                                    <div class="custom-radio" style="position: relative; left: 50%;">
+                                                        <input required  type="radio" class="custom-control-input" id="Question9-5" value="5" name="Question9">
+                                                        <label class="custom-control-label" for="Question9-5">5</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-3">
+                                        extremely likely
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-question mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Do you have any thoughts on how to improve this software?</h5>
+                            <!-- Generated based on the template: TextQuestion.j2 -->
+                            <textarea  name="Question10"   class="form-field form-control"   placeholder="Your answer" ></textarea>
+
+                        </div>
+                    </div>
+                
+                </section>
+                <button type="submit" class="btn btn-lg submit-btn mt-3 mb-3" id="submitBtn">Submit Form</button>
+            </form>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="alert alert-primary alertBox alert-dismissable" id="successAlertBox">
+                    <button type="button" class="close alert-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>You have successfully submitted your answers! Thank you for participating.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="alert alert-danger alertBox alert-dismissable" id="errorAlertBox">
+                    <button type="button" class="close alert-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>Unfortunately, an error occured. Please try again.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

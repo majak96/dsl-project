@@ -1,10 +1,14 @@
+import question_types
+
 Survey:
     //user defined question types
-    question_types*=QuestionType
+    imports*=Import
 
     //survey
     survey=SurveyContent
 ;
+
+Import: 'import' importURI=STRING;
 
 SurveyContent:
     'survey' name=ID '{'
@@ -34,24 +38,6 @@ Section:
     
         questions+=Question
     '}'
-;
-
-QuestionType:
-    'question_type' name=ID '{'
-        ('description' ':' description=STRING)?
-        'parameters' '{'
-            parameters*=Parameter
-        '}'
-    '}'    
-;
-
-Parameter:
-    required?='@Required'
-    parameter_type=ParameterType name=ID
-;
-
-ParameterType:
-    ('string' | 'integer' | 'float' | 'boolean')('[]')?
 ;
 
 Question:

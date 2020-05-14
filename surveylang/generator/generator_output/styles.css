@@ -1,0 +1,79 @@
+.main-body {
+    background-color: rgba(17, 207, 197, 0.1);
+}
+
+.card-header{
+    background-color: rgb(17, 207, 197);
+}
+
+.card-question {
+    padding: 1rem;
+}
+
+input, textarea, fieldset, select, .check-box-group {
+    margin-top: 2rem;
+}
+
+.form-field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgb(161, 153, 153);
+    outline: 0;
+    padding: 7px 0;
+    background: transparent;
+    transition: 0.2s;
+  }
+
+
+.questionnaire {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color:  rgb(17, 207, 197);
+    border-color:  rgb(17, 207, 197);
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+    background-color:  rgb(17, 207, 197);
+    border-color:  rgb(17, 207, 197);
+}
+
+.alertBox {
+    position: fixed;
+    bottom: 5px;
+    right:2%;
+    width: 50%;
+    display: none;
+}
+
+.submit-btn{
+    background-color:  rgb(17, 207, 197);
+    border-color:  rgb(17, 207, 197);
+    float: right;
+    color: white;
+}
+
+.submit-btn:hover{
+    background-color:  rgb(119, 226, 221);
+    border-color:  rgb(119, 226, 221);
+    float: right;
+    color: white;
+}
+
+.errorTemplate {
+    border-bottom: 1px solid rgb(255, 0, 0) !important;
+}
+
+
+.errorMessage{
+    color: rgb(255, 0, 0);
+    margin-bottom: 10px;
+}
+
+.errorBorder {
+    border: 1px solid rgb(255, 0, 0);
+}
