@@ -1,0 +1,114 @@
+import "example_question_types.qstn"
+
+survey SoftwareEvaluation {
+
+    title : "Software evaluation"
+    description: "Description of this awesome survey"
+    author: "Tim 3"
+
+    submit_url:"https://en96sm60rk9gv.x.pipedream.net"
+
+    success_message: "You have successfully submitted your answers! Thank you for participating."
+    error_message: "Unfortunately, an error occured. Please try again."
+
+    //general information section
+    section {
+        title: "General information"
+
+        @Required
+        @TextQuestion
+        question Question0 {
+            title: "Name"
+            multiline: false
+        } 
+
+        @Required
+        @EmailQuestion
+        question Question1 {
+            title: "Email address"
+            placeholder: "Insert your email address"
+        }
+
+        @DateQuestion
+        question Question2 {
+            title: "When did you install this software?"
+        }
+
+        @Required
+        @ChoiceQuestion
+        question Question3 {
+            title: "How did you find out about this software?"
+            choices: ["From a friend", "From a family member", "From a website", "Other"]
+            multiple: true
+        }
+
+        @Required
+        @DropDownQuestion
+        question Question4 {
+            title: "In which language are you using this software?"
+            options: ["English", "German", "Spanish", "Italian", "Russian"]
+        }
+    }
+
+    /*software evaluation section*/
+    section {
+        title: "Software evaluation"
+
+        @TimeQuestion
+        question Question5 {
+            title: "When do you usually start to use this software?"
+        }
+
+        @NumberQuestion
+        question Question6 {
+            title: "How many hours a day do you spend using this software?"
+            min: 0
+            max: 24
+        }  
+
+        @Required
+        @LikertScaleQuestion
+        question Question7 {
+            title: "How satisfied are you with:"
+            rows_names: ["The reliability of this software", 
+                         "The security of this software", 
+                         "The software's ease of use",
+                         "The look and feel of this software"]
+            columns_names: ["Not satisfied at all", "Not so satisfied", "Somewhat satisfied", "Very satisfied", "Extremely satisfied"]
+            multiple_in_row: false
+        }
+    }
+
+    /*
+        conclusion 
+        section
+    */
+    section {
+        title: "Conclusion"
+
+        @Required
+        @ChoiceQuestion
+        question Question8 {
+            title: "Do you plan to continue using this software?"
+            choices: ["Yes", "No", "I'm not sure"]
+            multiple: false
+        }
+
+        @Required
+        @LinearScaleQuestion
+        question Question9 {
+            title: "How likely is it that you would recommend this software to a friend or a family member?"
+            min_value: 0
+            max_value: 5
+            min_description: "not at all likely"
+            max_description: "extremely likely"
+        } 
+
+        @TextQuestion
+        question Question10 {
+            title: "Do you have any thoughts on how to improve this software?"
+            multiline: true
+            max_length: 200
+        }
+    }
+}

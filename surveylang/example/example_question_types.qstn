@@ -1,0 +1,6 @@
+question_type EmailQuestion {
+    description: "Question type with the special email input field"
+    parameters {
+        string placeholder
+    }
+}
