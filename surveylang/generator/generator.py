@@ -3,7 +3,7 @@ from os.path import exists, dirname, join
 from shutil import copy
 import jinja2
 from entities import Survey, Section, Question
-from meta_model import get_metamodel
+from textx import metamodel_for_language
 import datetime
 import sys
 
@@ -13,10 +13,10 @@ def generate(survey_file):
     
     this_folder = dirname(__file__)
 
-    metamodel = get_metamodel()
+    survey_metamodel = metamodel_for_language('survey-dsl')
 
     # build model
-    model = metamodel.model_from_file(survey_file)
+    model = survey_metamodel.model_from_file(survey_file)
 
     survey_name = model.survey.name
     survey_information = model.survey.survey_info
