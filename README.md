@@ -22,14 +22,11 @@ SurveyIT also includes a sublanguage for defining new question types. In order t
 Surveys are generated as HTML, CSS and JavaScript files. 
 
 ## Example
-This is a short example of a survey defined using SurveyIT, including a user-defined question type EmailQuestion. Full example is available in the generator folder of the repository.
+This is a short example of a survey defined using SurveyIT. This survey imports a user-defined question type EmailQuestion defined using the sublanguage for defining question types. Full example is available in the example folder of the repository.
+
+### Survey example (example_survey.srvy)
 ```
-question_type EmailQuestion {
-    description: "Question type with the special email input field"
-    parameters {
-        string placeholder
-    }
-}
+import "example_question_types.qstn"
 
 survey SoftwareEvaluation {
 
@@ -98,6 +95,16 @@ survey SoftwareEvaluation {
             title: "Do you plan to continue using this software?"
             options: ["Yes", "No", "I'm not sure"]
         }
+    }
+}
+```
+### Question type example (example_question_types.qstn)
+```
+question_type EmailQuestion {
+    description: "Question type with the special email input field"
+    template_path: "/path/to/example/EmailQuestion.j2"
+    parameters {
+        string placeholder
     }
 }
 ```
