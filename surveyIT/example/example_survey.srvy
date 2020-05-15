@@ -22,13 +22,14 @@ survey SoftwareEvaluation {
             multiline: false
         } 
 
-        @Required
+        
+        /* @Required
         @EmailQuestion
         question Question1 {
             title: "Email address"
             placeholder: "Insert your email address"
-        }
-
+        } */
+        
         @DateQuestion
         question Question2 {
             title: "When did you install this software?"

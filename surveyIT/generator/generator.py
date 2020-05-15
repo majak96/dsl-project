@@ -2,7 +2,8 @@ from os import mkdir
 from os.path import exists, dirname, join
 from shutil import copy
 import jinja2
-from textx import metamodel_for_language
+from textx import metamodel_for_language, model as md
+from ..language.meta_model import QuestionType
 import datetime
 import sys
 
@@ -16,9 +17,22 @@ def generate(model, output_path, overwrite):
         overwrite (boolean): Should overwrite output files 
     """
 
-    now = datetime.datetime.utcnow().strftime("%a, %b %d, %Y %X")
-    
+    now = datetime.datetime.now().strftime("%a, %b %d, %Y %X")
+
     this_folder = dirname(__file__)
+
+    questions = md.get_children_of_type("Question", model.survey)
+    question_types = [question.type for question in questions]
+    question_types = set(question_types)
+    
+    # copy and rename templates for user-defined question types
+    for qt in question_types:
+        if(qt.template_path!=''):
+            if not exists(qt.template_path):
+                print('Error: Template path {} does not exist.'.format(qt.template_path))
+                return
+            else:
+                copy(qt.template_path, join(this_folder, 'templates/'+qt.name+'.j2'))       
 
     # create output folders
     output_folder = join(output_path, 'generator_output')

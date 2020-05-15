@@ -5,6 +5,7 @@ QuestionTypes:
 QuestionType:
     'question_type' name=ID '{'
         ('description' ':' description=STRING)?
+        'template_path' ':' template_path=STRING
         'parameters' '{'
             parameters*=Parameter
         '}'
