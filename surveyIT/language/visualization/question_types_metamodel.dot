@@ -1,0 +1,34 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+37916088[ label="{QuestionTypes|}"]
+
+36716568[ label="{QuestionType|name: ID\ldescription: STRING\ltemplate_path: STRING\l}"]
+
+36791624[ label="{Parameter|required: optional\<BOOL\>\lparameter_type: ParameterType\lname: ID\l}"]
+
+
+
+37916088 -> 36716568[arrowtail=diamond, dir=both, headlabel="question_types 0..*"]
+36716568 -> 36791624[arrowtail=diamond, dir=both, headlabel="parameters 0..*"]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Comment</b></td><td>\/\*(.|\n)*?\*\/|\/\/.*?$</td>
+	</tr>
+	<tr>
+		<td><b>ParameterType</b></td><td>string|integer|float|boolean []?</td>
+	</tr>
+</table> >]
+
+
+}
