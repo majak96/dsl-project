@@ -4,9 +4,10 @@
 
 ## Description
 
-SurveyIT is a domain-specific language for definining web-based surveys. SurveyIT enables defining surveys using built-in question types, as well as defining new question types. Surveys are generated as HTML, CSS and JavaScript files. 
+SurveyIT is a domain-specific language for definining web-based surveys. The language is created for the purpose of the Domain-Specific Languages course at the Faculty of Technical Sciences, University of Novi Sad.
 
-Supported built-in question types:
+SurveyIT enables defining surveys using built-in question types:
+
 - Text question
 - Number question
 - Choice question
@@ -16,7 +17,9 @@ Supported built-in question types:
 - Time question
 - Likert scale question
 
-SurveyIT is created for the purpose of the Domain-Specific Languages course at the Faculty of Technical Sciences, University of Novi Sad.
+SurveyIT also includes a sublanguage for defining new question types. In order to use the new user-defined question type, a Jinja2 template for the question type must be provided.
+
+Surveys are generated as HTML, CSS and JavaScript files. 
 
 ## Example
 This is a short example of a survey defined using SurveyIT, including a user-defined question type EmailQuestion. Full example is available in the generator folder of the repository.
@@ -104,15 +107,15 @@ survey SoftwareEvaluation {
 ```
 $ pip install -r requirements.txt
 ```
-2. Change the current working directory (assuming you are positioned in the directory of the cloned repository)
+2. Generate your survey
 ```
-$ cd generator
+$ textx generate example_survey.srvy --target html+css+js
 ```
-3. Generate your survey
-```
-$ python generator.py example.srvy
-```
-If the generation process completes successfully, generated survey files are located in the generator_output folder.
+Use flag ```-o``` or ```--output-path``` to provide the output path for generated files. If output path is not provided, files will be generated in the directory of the input file.
+
+Use flag ```--overwrite``` to overwrite the target files if they already exist.
+
+If the generation process completes successfully, generated survey files will be located in the generator_output folder in the provided output path or the directory of the input file.
 
 ## Technologies used
 - Python 3.6+
