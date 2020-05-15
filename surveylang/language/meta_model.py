@@ -120,6 +120,14 @@ def question_object_processor(question):
         if parameters_in_question.count(parameter) > 1:
             raise TextXSemanticError('Parameter {} of question type {} has been defined twice in question {}'.format(parameter.name, question.type.name, question.name))
 
+
+    # change parameters list to dictionary
+    parameters_dict = {}
+    for parameter in question.parameters :
+        parameters_dict[parameter.parameter.name] = parameter.value.value
+
+    question.parameters = parameters_dict
+
 def parameter_value_object_processor(parameter_value):
     """Checks if the type of the parameter value matches the defined parameter type."""
 

@@ -23,12 +23,12 @@ Generated based on the template: {{ self._TemplateReference__context.name }} -->
             <div class="card mt-5">
                 <div class="card-header"></div>
                 <div class="card-body my-2 mx-2">
-                    {% if survey.author %}
-                    <h6 class="mt-4">Author: {{survey.author}}</h6>
+                    {% if survey.survey_info.author %}
+                    <h6 class="mt-4">Author: {{survey.survey_info.author}}</h6>
                     {% endif %}
-                    <h3 class="card-title">{{survey.title}}</h3>
+                    <h3 class="card-title">{{survey.survey_info.title}}</h3>
                     <h6 class="card-text text-muted" style="margin-top: 1rem; margin-bottom: 1rem;">
-                        {{survey.description}}
+                        {{survey.survey_info.description}}
                     </h6>
                     <h6 style="color:red" class="mt-4"> * Required </h6>
                 </div>
@@ -52,7 +52,7 @@ Generated based on the template: {{ self._TemplateReference__context.name }} -->
                         <div class="card-body">
                             <h5 class="card-title mb-3">{{question.title}}{% if question.required %}<span style="color:red"> * </span>{% endif %}</h5>
                             {% filter indent(first= True, width=28) %}
-                                {% include question.qtype+".j2" ignore missing %}
+                                {% include question.type.name+".j2" ignore missing %}
 
                             {% endfilter %}
                         </div>
@@ -70,8 +70,8 @@ Generated based on the template: {{ self._TemplateReference__context.name }} -->
                     <button type="button" class="close alert-close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    {% if survey.success_message %}
-                    <p>{{survey.success_message}}</p>
+                    {% if survey.survey_info.success_message %}
+                    <p>{{survey.survey_info.success_message}}</p>
                     {% else %}
                     <p>Successfully submited!</p>
                     {% endif %}
@@ -84,8 +84,8 @@ Generated based on the template: {{ self._TemplateReference__context.name }} -->
                     <button type="button" class="close alert-close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    {% if survey.error_message %}
-                    <p>{{survey.error_message}}</p>
+                    {% if survey.survey_info.error_message %}
+                    <p>{{survey.survey_info.error_message}}</p>
                     {% else %}
                     <p>An error occured! Please try again.</p> 
                     {% endif %}
