@@ -1,5 +1,5 @@
 __pycache__
 .vscode/
-/surveylang/generator/generator_output/**
-surveylang.egg-info/
+/surveyIT/generator/generator_output/**
+surveyIT.egg-info/
 build

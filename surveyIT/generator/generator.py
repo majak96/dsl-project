@@ -6,27 +6,35 @@ from textx import metamodel_for_language
 import datetime
 import sys
 
-def generate(survey_file):
+def generate(model, output_path, overwrite):
+    """
+    Generates web-based surveys (HTML + CSS + JS) from surveyIT domain specific language
+
+    Parameters: 
+        model (Survey): textX model that represents the survey
+        output_path (string): The output to generate to
+        overwrite (boolean): Should overwrite output files 
+    """
 
     now = datetime.datetime.utcnow().strftime("%a, %b %d, %Y %X")
     
     this_folder = dirname(__file__)
 
-    survey_metamodel = metamodel_for_language('survey-dsl')
-
-    # build model
-    model = survey_metamodel.model_from_file(survey_file)
-
     # create output folders
-    output_folder = join(this_folder, 'generator_output')
+    output_folder = join(output_path, 'generator_output')
+
+    if not overwrite and exists(output_folder):
+        print('-- Skipping: {}'.format(output_folder))
+        return
+    
     if not exists(output_folder):
         mkdir(output_folder)
 
-    js_output_folder = join(this_folder, 'generator_output/js')
+    js_output_folder = join(output_path, 'generator_output/js')
     if not exists(js_output_folder):
         mkdir(js_output_folder)
 
-    css_output_folder = join(this_folder, 'generator_output/css')
+    css_output_folder = join(output_path, 'generator_output/css')
     if not exists(css_output_folder):
         mkdir(css_output_folder)
 
@@ -49,10 +57,19 @@ def generate(survey_file):
     copy(join(this_folder, 'templates/styles.css'), css_output_folder)
    
 if __name__ == "__main__":
+
+    this_folder = dirname(__file__)
     
     if len(sys.argv) < 2:
         print('Error: Survey file is missing.')
     else:
         survey_file = sys.argv[1]
-        generate(survey_file)
+
+        survey_metamodel = metamodel_for_language('surveyIT')
+
+        # build model
+        model = survey_metamodel.model_from_file(survey_file)
+        
+
+        generate(model, this_folder, True)
         
