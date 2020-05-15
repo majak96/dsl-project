@@ -1,4 +1,5 @@
 __pycache__
 .vscode/
-generator/generator_output/
-tx_srvy.egg-info/
+**/generator_output/**
+surveyIT.egg-info/
+build

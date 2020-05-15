@@ -1,9 +1,4 @@
-question_type EmailQuestion {
-    description: "Question type with the special email input field"
-    parameters {
-        string placeholder
-    }
-}
+import "example_question_types.qstn"
 
 survey SoftwareEvaluation {
 
@@ -27,13 +22,14 @@ survey SoftwareEvaluation {
             multiline: false
         } 
 
-        @Required
+        
+        /* @Required
         @EmailQuestion
         question Question1 {
             title: "Email address"
             placeholder: "Insert your email address"
-        }
-
+        } */
+        
         @DateQuestion
         question Question2 {
             title: "When did you install this software?"
@@ -58,7 +54,7 @@ survey SoftwareEvaluation {
     /*software evaluation section*/
     section {
         title: "Software evaluation"
-        
+
         @TimeQuestion
         question Question5 {
             title: "When do you usually start to use this software?"
@@ -115,6 +111,5 @@ survey SoftwareEvaluation {
             multiline: true
             max_length: 200
         }
-
     }
 }

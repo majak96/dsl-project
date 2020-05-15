@@ -69,7 +69,7 @@ function submitFunction(e) {
 
 		if(isValid) {
 			$.ajax({
-				url: '{{survey.submit_url}}',
+				url: '{{survey.survey_info.submit_url}}',
 				type: 'POST',
 				data: $('#myForm').serialize(),
 				success: function(){

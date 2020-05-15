@@ -1,0 +1,69 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+37711128[ label="{Survey|}"]
+
+37716072[ label="{Import|importURI: STRING\l}"]
+
+37721608[ label="{SurveyContent|name: ID\l}"]
+
+37727144[ label="{SurveyInformation|title: STRING\ldescription: STRING\lauthor: STRING\lsubmit_url: STRING\lsuccess_message: STRING\lerror_message: STRING\l}"]
+
+37714072[ label="{Section|title: STRING\ldescription: STRING\l}"]
+
+37602328[ label="{Question|required: optional\<BOOL\>\lname: ID\ltitle: STRING\l}"]
+
+37706120[ label="{ParameterValue|}"]
+
+37733272[ label="{*Value|}"]
+
+37738808[ label="{PrimitiveValue|value: OBJECT\l}"]
+
+37744344[ label="{ArrayValue|value: list[OBJECT]\l}"]
+
+37612216[ label="{QuestionTypes|}"]
+
+36716568[ label="{QuestionType|name: ID\ldescription: STRING\ltemplate_path: STRING\l}"]
+
+36791624[ label="{Parameter|required: optional\<BOOL\>\lparameter_type: ParameterType\lname: ID\l}"]
+
+
+
+37711128 -> 37716072[arrowtail=diamond, dir=both, headlabel="imports 0..*"]
+37711128 -> 37721608[arrowtail=diamond, dir=both, headlabel="survey "]
+37721608 -> 37727144[arrowtail=diamond, dir=both, headlabel="survey_info "]
+37721608 -> 37714072[arrowtail=diamond, dir=both, headlabel="sections 1..*"]
+37714072 -> 37602328[arrowtail=diamond, dir=both, headlabel="questions 1..*"]
+37602328 -> 36716568[headlabel="type "]
+37602328 -> 37706120[arrowtail=diamond, dir=both, headlabel="parameters 0..*"]
+37706120 -> 36791624[headlabel="parameter "]
+37706120 -> 37733272[arrowtail=diamond, dir=both, headlabel="value "]
+37733272 -> 37738808 [dir=back]
+37733272 -> 37744344 [dir=back]
+37622104[ label="{*OBJECT|}"]
+
+37622104[ label="{*OBJECT|}"]
+
+37612216 -> 36716568[arrowtail=diamond, dir=both, headlabel="question_types 0..*"]
+36716568 -> 36791624[arrowtail=diamond, dir=both, headlabel="parameters 0..*"]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Comment</b></td><td>\/\*(.|\n)*?\*\/|\/\/.*?$</td>
+	</tr>
+	<tr>
+		<td><b>ParameterType</b></td><td>string|integer|float|boolean []?</td>
+	</tr>
+</table> >]
+
+
+}

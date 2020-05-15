@@ -1,7 +1,21 @@
 Arpeggio==1.9.2
-click==7.1.1
+attrs==19.3.0
+bleach==3.1.5
+Click==7.0
+docutils==0.16
+headerparser==0.3.0
+humanfriendly==8.2
 Jinja2==2.11.2
 MarkupSafe==1.1.1
-pkg-resources==0.0.0
--e git+git@github.com:textX/textX.git@c4a781c42d3cdad182defc06f6f410894b392b5c#egg=textX
+packaging==20.3
+property-manager==2.3.1
+Pygments==2.6.1
+pyparsing==2.4.7
+readme-renderer==24.0
+six==1.14.0
+-e git+git://github.com/textX/textX.git#egg=textX
+verboselogs==1.7
+webencodings==0.5.1
+wheel-inspect==1.3.0
 xdot==1.1
+.

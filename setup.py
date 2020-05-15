@@ -3,7 +3,7 @@ import os
 
 from setuptools import find_packages, setup
 
-PACKAGE_NAME = "tx-survey"
+PACKAGE_NAME = "surveyIT"
 VERSION = "0.1.0"
 AUTHOR = "Tim 3"
 AUTHOR_EMAIL = "timisaprojekat@gmail.com"
@@ -25,7 +25,15 @@ setup(
     include_package_data=True,
     package_data={"": ["*.tx"]},
     install_requires=["textx_ls_core"],
-    entry_points={"textx_languages": ["srvy = grammar:srvy"]},
+    entry_points={
+        'textx_languages': [
+            'survey_lang = surveyIT:survey_lang',
+            'question_types_lang = surveyIT:question_types_lang',
+          ],
+        'textx_generators': [
+            'survey_gen = surveyIT:survey_gen',
+          ]
+    },
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
