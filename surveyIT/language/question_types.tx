@@ -20,3 +20,7 @@ Parameter:
 ParameterType:
     ('string' | 'integer' | 'float' | 'boolean')('[]')?
 ;
+
+Comment:
+    /\/\*(.|\n)*?\*\// | /\/\/.*?$/
+;

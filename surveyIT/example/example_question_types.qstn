@@ -1,6 +1,6 @@
 question_type EmailQuestion {
     description: "Question type with the special email input field"
-    template_path: "/path/to/example/EmailQuestion.j2"
+    template_path: "/path/to/example/EmailQuestion.j2" //change this path to EmailQuestion.j2 path
     parameters {
         string placeholder
     }
