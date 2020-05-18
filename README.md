@@ -108,6 +108,9 @@ question_type EmailQuestion {
     }
 }
 ```
+### Generated survey example
+
+![generated survey](surveyIT/example/generated_survey_example.png)
 
 ## Instructions
 1. Install requirements
