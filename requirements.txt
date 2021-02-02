@@ -1,6 +1,6 @@
 Arpeggio==1.9.2
 attrs==19.3.0
-bleach==3.1.5
+bleach==3.3.0
 Click==7.0
 docutils==0.16
 headerparser==0.3.0
