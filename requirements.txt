@@ -5,7 +5,7 @@ Click==7.0
 docutils==0.16
 headerparser==0.3.0
 humanfriendly==8.2
-Jinja2==2.11.2
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 packaging==20.3
 property-manager==2.3.1
